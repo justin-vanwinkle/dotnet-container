@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+self=$(readlink -f $0); tasks=`dirname ${self}`; projectRoot=`dirname ${tasks}`;
+docker build -t justinvanwinkle/dotnet:latest -t justinvanwinkle/dotnet:`date +%Y%m%d` -f Dockerfile.dotnet $projectRoot;
+docker build -t justinvanwinkle/dotnet-ide:latest -t justinvanwinkle/dotnet-ide:`date +%Y%m%d` -f Dockerfile.dotnet-ide $projectRoot;
+docker build -t justinvanwinkle/dotnet-vscode:latest -t justinvanwinkle/dotnet-vscode:`date +%Y%m%d` -f Dockerfile.dotnet-vscode $projectRoot;
+docker build -t justinvanwinkle/dotnet-rider:latest -t justinvanwinkle/dotnet-rider:`date +%Y%m%d` -f Dockerfile.dotnet-rider $projectRoot;

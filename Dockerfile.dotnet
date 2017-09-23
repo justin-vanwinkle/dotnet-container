@@ -1,0 +1,34 @@
+FROM microsoft/dotnet:latest
+LABEL maintainer "vanwinkle.justin@gmail.com"
+
+# Set up 1.1.2 runtime for backwards compatability with SB apps
+RUN https://download.microsoft.com/download/7/8/5/7852163D-1A56-4642-84B6-60A8537343EF/dotnet-sharedframework-ubuntu.16.04-x64.1.0.5.deb
+RUN dpkg -i dotnet-sharedframework-ubuntu.16.04-x64.1.0.5.deb
+RUN rm dotnet-sharedframework-ubuntu.16.04-x64.1.0.5.deb
+
+# Install the Node.js repo
+RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
+
+# Install NodeJs it's self
+RUN export DEBIAN_FRONTEND=noninteractive && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends nodejs && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install typescript, its highly likely that
+# C# and TypeScript will be used together.
+RUN npm install -g typescript
+
+# Download and install, su-exec. https://github.com/ncopa/su-exec
+# This is a simple tool that will simply execute a program with different privileges.
+# The program will not run as a child, like su and sudo, so we work around TTY and signal issues.
+RUN curl -fsSLR -o /usr/local/bin/su-exec \
+    https://github.com/javabean/su-exec/releases/download/v0.2/su-exec.$(dpkg --print-architecture | awk -F- '{ print $NF }') && \
+    chmod +x /usr/local/bin/su-exec
+
+# Setup our custom entry point which will use su-exec
+# to run the requested command as the host's user.
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
