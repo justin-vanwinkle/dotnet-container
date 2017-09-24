@@ -5,10 +5,10 @@ RUN apt-get update
 RUN apt-get install apt-transport-https
 
 # Set up 1.1.2 runtime for backwards compatability with SB apps
-RUN sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ xenial main" > /etc/apt/sources.list.d/dotnetdev.list'
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893
-RUN apt-get update
-RUN apt-get install -y dotnet-sdk-ubuntu-x64.1.0.4
+RUN wget https://download.microsoft.com/download/2/4/A/24A06858-E8AC-469B-8AE6-D0CEC9BA982A/dotnet-ubuntu.16.04-x64.1.0.5.tar.gz
+RUN mkdir -p /opt/dotnet
+RUN tar zxf dotnet-ubuntu.16.04-x64.1.0.5.tar.gz -C /opt/dotnet
+RUN ln -s /opt/dotnet/dotnet /usr/local/bin
 
 # Install the Node.js repo
 RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
