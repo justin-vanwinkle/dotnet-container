@@ -5,4 +5,4 @@ LABEL maintainer "vanwinkle.justin@gmail.com"
 RUN cd /opt && \
     curl -L `echo -n \`curl -s 'https://data.services.jetbrains.com/products/releases?code=RD&latest=true&type=eap' | jq -r '.RD[0].downloads.linux.link'\`` | \
     tar xz && \
-    mv `ls` rider
+    mv `ls` ./rider/
