@@ -16,7 +16,6 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
         jq \
         mono-complete \
         msbuild \
-        chromium \
         git \
         libc6-dev \
         libgtk2.0-0 \
@@ -28,7 +27,6 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
         libnss3 \
         libasound2 \
         libxtst6 \
-        unzip \
         libglib2.0-bin \
         libcanberra-gtk-module \
         libgl1-mesa-glx \
@@ -36,24 +34,19 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
         gettext \
         libstdc++6 \
         software-properties-common \
-        xterm \
         automake \
         libtool \
         autogen \
         libnotify-bin \
         aspell \
         aspell-en \
-        htop \
         gvfs-bin \
         libxss1 \
         rxvt-unicode-256color \
         x11-xserver-utils \
-        sudo \
-        vim \
         xdg-utils \
         libgl1-mesa-dri \
         libcanberra-gtk-module \
-        libexif-dev \
-        pulseaudio && \
+        libexif-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
