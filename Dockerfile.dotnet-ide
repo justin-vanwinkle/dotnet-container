@@ -1,4 +1,4 @@
-FROM justinvanwinkle/dotnet:latest
+FROM bradjones/dotnet:20170721
 LABEL maintainer "vanwinkle.justin@gmail.com"
 
 # Install the Xamarin Mono Repo
