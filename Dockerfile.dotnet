@@ -9,6 +9,10 @@ RUN apt-get install apt-transport-https
 #RUN mkdir -p /opt/dotnet
 #RUN tar zxf dotnet-ubuntu.16.04-x64.1.1.2.tar.gz -C /opt/dotnet
 #RUN ln -s /opt/dotnet/dotnet /usr/local/bin
+RUN sh -c 'echo "deb [arch=amd64] https://apt-mo.trafficmanager.net/repos/dotnet-release/ xenial main" > /etc/apt/sources.list.d/dotnetdev.list'
+RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 417A0893
+RUN apt-get update
+RUN apt-get install dotnet-sdk-ubuntu-x64.1.0.4
 
 # Install the Node.js repo
 RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
