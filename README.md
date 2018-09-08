@@ -4,9 +4,9 @@
 
 ## Quick start / TL;DR
 
-* **To run VS Code**, grab the `code` script in the `bin` folder and execute it.
-* **To run JetBrains Rider**, grab the `rider` script in the `bin` folder and execute it.
-* **To use the dotnet toolchain** via command line, grab the `dotnet` script in the bin folder and execute it.
+* **To run VS Code**, run `bin/code`.
+* **To run JetBrains Rider**, run `bin/rider`.
+* **To use the dotnet toolchain** run `bin/dotnet`.
 
 Doing any of the above will pull a prebuilt docker image and run it.  The processes for that particular item will be 100% isolated in a docker container, but it will have access to all of your files and X Forwarding (only for `code ` and `rider` will show you a GUI).
 
